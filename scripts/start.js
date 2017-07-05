@@ -20,6 +20,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
+const spawn = require("child_process").spawn;
 const {
   choosePort,
   createCompiler,
@@ -74,7 +75,11 @@ choosePort(HOST, DEFAULT_PORT)
         clearConsole();
       }
       console.log(chalk.cyan('Starting the development server...\n'));
-      // openBrowser(urls.localUrlForBrowser);
+      const electron = spawn("electron", ["scripts/electron.js"]);
+      electron.on('close', () => {
+        devServer.close();
+        process.exit();
+      });
     });
 
     ['SIGINT', 'SIGTERM'].forEach(function(sig) {
