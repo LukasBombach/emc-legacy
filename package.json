@@ -35,6 +35,11 @@
     "react-dev-utils": "^3.0.2",
     "react-dom": "^15.6.1",
     "react-error-overlay": "^1.0.9",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "next",
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
@@ -50,7 +55,8 @@
     "electron": "electron ."
   },
   "devDependencies": {
-    "electron": "^1.6.11"
+    "electron": "^1.6.11",
+    "redux-logger": "^3.0.6"
   },
   "jest": {
     "collectCoverageFrom": [
