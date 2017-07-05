@@ -75,7 +75,7 @@ choosePort(HOST, DEFAULT_PORT)
         clearConsole();
       }
       console.log(chalk.cyan('Starting the development server...\n'));
-      const electron = spawn("electron", ["scripts/electron.js"]);
+      const electron = spawn("electron", ["scripts/electron.js"]); // todo pass port
       electron.on('close', () => {
         devServer.close();
         process.exit();
