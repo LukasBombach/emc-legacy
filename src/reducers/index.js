@@ -1,8 +1,8 @@
-import { routerReducer as routing } from 'react-router-redux'
-import { combineReducers } from 'redux'
+import { routerReducer as routing } from 'react-router-redux';
+import { combineReducers } from 'redux';
+import collection from './collection';
 
-const rootReducer = combineReducers({
+export default combineReducers({
   routing,
+  collection,
 });
-
-export default rootReducer;

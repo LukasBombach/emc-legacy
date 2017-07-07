@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loadCollection } from '../actions';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.loadCollection();
+  }
+
   render() {
+    console.log(this.props.collection)
     return (
       <div className="App">
         <div className="App-header">
@@ -18,4 +26,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  ({ collection }) => ({ collection }),
+  { loadCollection }
+)(App);
