@@ -1,4 +1,3 @@
-import 'rxjs';
 import { COLLECTION_REQUEST, COLLECTION_LOADED_FS } from '../actions/collection';
 
 export default function loadCollection(action$) {
