@@ -7,7 +7,9 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
-    this.props.loadCollection();
+    this.props.loadCollection([
+      { type: 'fs', path: '/Users/luke/Movies/' }
+    ]);
   }
 
   render() {
