@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
+import 'rxjs';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
-import 'rxjs';
 
 const store = configureStore();
 const history = createHistory();
