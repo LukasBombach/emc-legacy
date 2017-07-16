@@ -7,9 +7,13 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
-    this.props.loadCollection([
-      { type: 'fs', path: '/Users/luke/Movies/' }
-    ]);
+    this.props.loadCollection({
+      id: 'ab182be8f0',
+      sources: [
+        { type: 'movies', path: '/Users/luke/Movies/__filme' },
+        { type: 'movies', path: '/Users/luke/Movies/' }
+      ]
+    });
   }
 
   render() {
