@@ -1,14 +1,19 @@
-export default class MoviesFilter {
+export default class Movies {
 
   static fileFilter = /\.(avi|mkv|mpeg|mpg|mov|mp4|m4v)$/i;
 
-  static process(items) {
+  static filterAndEnrich(items) {
     return items
-      .filter(item => MoviesFilter.fileFilter.test(item.fileName))
+      .filter(item => Movies.fileFilter.test(item.fileName))
       .map(item => ({
         ...item,
-        name: MoviesFilter.titleFromFileName(item.fileName)
+        name: Movies.titleFromFileName(item.fileName)
       }));
+  }
+
+  static async scrape(items) {
+    // todo
+    return items;
   }
 
   static titleFromFileName(fileName) {

@@ -4,4 +4,12 @@ export default class Database {
 
   }
 
+  static putIfNotExist(items) {
+
+  }
+
+  static putOrUpdate(items) {
+
+  }
+
 }

@@ -1,7 +1,7 @@
 import { COLLECTION_LOAD, COLLECTION_LOADED_FS, COLLECTION_LOADED_DB, COLLECTION_LOADED_SCRAPE } from '../actions/collection';
 import Database from '../models/database';
 import Scraper from '../models/scraper';
-import Collection from '../models/collection';
+import FileManager from '../collections/fileManager';
 
 export default store => next => async action => {
 
@@ -11,18 +11,19 @@ export default store => next => async action => {
 
   next(action);
 
-  const moviesOnFs = await Collection.loadFromFs(action.collection);
-  next({ type: COLLECTION_LOADED_FS, items: moviesOnFs });
+  const itemsOnFs = await FileManager.loadCollectionFromFs(action.collection);
+  Database.putIfNotExist(itemsOnFs);
+  next({ type: COLLECTION_LOADED_FS, items: itemsOnFs });
 
-  const moviesInDb = await Database.load(moviesOnFs);
-  next({ type: COLLECTION_LOADED_DB, items: moviesInDb });
+  const itemsInDb = await Database.load(itemsOnFs);
+  next({ type: COLLECTION_LOADED_DB, items: itemsInDb });
 
-  const unscrapedMovies = Object.entries({ ...moviesOnFs, ...moviesInDb })
-    .filter(([, movie]) => !!movie.scraped)
-    .reduce((acc, [id, movie]) => { acc[id] = movie; return acc; }, {});
+  const unscrapedItems = Object.entries({ ...itemsOnFs, ...itemsInDb })
+    .filter(([, item]) => !item.scraped)
+    .reduce((acc, [id, item]) => { acc[id] = item; return acc; }, {});
 
-  const newlyScrapedMovies = await Scraper.scrape(unscrapedMovies);
-  Database.put(newlyScrapedMovies);
-  next({ type: COLLECTION_LOADED_SCRAPE, items: newlyScrapedMovies });
+  const newlyScrapedItems = await Scraper.scrape(unscrapedItems);
+  Database.putOrUpdate(newlyScrapedItems);
+  next({ type: COLLECTION_LOADED_SCRAPE, items: newlyScrapedItems });
 
 }

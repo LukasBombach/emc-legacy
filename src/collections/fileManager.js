@@ -1,7 +1,7 @@
 import fs from 'fs';
 import md5 from 'md5';
 import collectionConfig from '../config/collections';
-import MoviesFilter from '../collectionFilters/MoviesFilter';
+import Movies from './movies';
 
 const readDir = path => new Promise((resolve, reject) => {
   fs.readdir(path, (error, result) => {
@@ -17,15 +17,15 @@ const stat = path => new Promise((resolve, reject) => {
   })
 });
 
-export default class Collection {
+export default class FileManager {
 
   static filters = {
-    movies: MoviesFilter,
+    movies: Movies,
   };
 
-  static async loadFromFs(collection) {
+  static async loadCollectionFromFs(collection) {
     const itemsPromises = collection.sources
-      .map(source => Collection.loadSourceFromFs(source));
+      .map(source => FileManager.loadSourceFromFs(source));
     const items = await Promise.all(itemsPromises);
     return items.reduce((acc, cur) => ({ ...acc, ...cur }), {});
   }
@@ -35,17 +35,15 @@ export default class Collection {
     const itemPromises = fileNames
       .filter(fileName => !collectionConfig.ignoreFiles.test(fileName))
       // todo exclude / recurse folders
-      .map(fileName => Collection.getItemForFile(source.path, fileName));
+      .map(fileName => FileManager.getItemForFile(source.path, fileName));
     const items = await Promise.all(itemPromises);
-    const processedItems = Collection.filters[source.type].process(items);
-    return processedItems.reduce((obj, item) => {
-      obj[item.fingerprint] = item;
-      return obj;
-    }, {});
+    const processedItems = FileManager.filters[source.type].filterAndEnrich(items);
+    return processedItems
+      .reduce((obj, item) => { obj[item.fingerprint] = item; return obj; }, {});
   }
 
   static async getItemForFile(pathToFolder, fileName) {
-    const fingerprint = await Collection.getFingerprint(pathToFolder, fileName);
+    const fingerprint = await FileManager.getFingerprint(pathToFolder, fileName);
     return { fingerprint, pathToFolder, fileName }
   }
 
