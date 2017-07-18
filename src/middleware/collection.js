@@ -11,11 +11,11 @@ export default store => next => async action => {
 
   next(action);
 
-  const itemsOnFs = await FileManager.loadCollectionFromFs(action.collection);
+  const itemsOnFs = await FileManager.loadCollection(action.collection);
   Database.putIfNotExist(itemsOnFs);
   next({ type: COLLECTION_LOADED_FS, items: itemsOnFs });
 
-  const itemsInDb = await Database.load(itemsOnFs);
+  const itemsInDb = await Database.loadItems(itemsOnFs);
   next({ type: COLLECTION_LOADED_DB, items: itemsInDb });
 
   const unscrapedItems = Object.entries({ ...itemsOnFs, ...itemsInDb })
