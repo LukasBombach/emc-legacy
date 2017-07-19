@@ -1,4 +1,6 @@
+import deepAssign from 'deep-assign';
 import PouchDB from 'pouchdb-browser'
+PouchDB.plugin(require('pouchdb-upsert'));
 
 export default class Database {
 
@@ -18,18 +20,22 @@ export default class Database {
       .reduce((obj, { rows }) => ({...obj, ...Database.getItemFromDatabaseRows(rows)}), {});
   }
 
-  static async putIfNotExist(items) {
+  static putIfNotExist(items) {
     const itemsByType = Database.sortItemsByType(items);
-    const dbQueryPromisesForTypes = Object.entries(itemsByType).map(([type, itemsOfType]) => {
+    Object.entries(itemsByType).map(([type, itemsOfType]) => {
       const db = new PouchDB(type);
       const docs = itemsOfType.map(item => ({ ...item, _id: item.fingerprint}));
       return db.bulkDocs(docs)
     });
-    return await Promise.all(dbQueryPromisesForTypes);
   }
 
   static putOrUpdate(items) {
-
+    const itemsByType = Database.sortItemsByType(items);
+    Object.entries(itemsByType).map(([type, itemsOfType]) => {
+      const db = new PouchDB(type);
+      const upsertPromises = itemsOfType.map(item => db.upsert(item.fingerprint, doc => deepAssign({}, doc, item)));
+      return Promise.all(upsertPromises);
+    });
   }
 
   static sortItemsByType(items) {
