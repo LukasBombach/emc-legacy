@@ -1,7 +1,7 @@
 import { COLLECTION_LOAD, COLLECTION_LOADED_FS, COLLECTION_LOADED_DB, COLLECTION_LOADED_SCRAPE } from '../actions/collection';
-import Database from '../models/database';
-import Scraper from '../models/scraper';
-import FileManager from '../collections/fileManager';
+import Database from '../data/database';
+import Scraper from '../data/scraper';
+import FileManager from '../data/fileSystem';
 
 export default store => next => async action => {
 
