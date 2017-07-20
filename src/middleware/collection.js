@@ -22,9 +22,9 @@ export default store => next => async action => {
     .filter(item => item.scraped !== true);
 
   for(const item of unscrapedItems) {
-    const newlyScrapedItem = await Scraper.scrapeSingleItem(item);
-    const itemInYaddaImproveMe = { [newlyScrapedItem.fingerprint]: newlyScrapedItem };
-    Database.putOrUpdate(itemInYaddaImproveMe);
-    next({ type: COLLECTION_LOADED_SCRAPE, items: itemInYaddaImproveMe });
+    const scrapedItem = await Scraper.scrapeSingleItem(item);
+    const wrappedItem = { [scrapedItem.fingerprint]: scrapedItem };
+    Database.putOrUpdate(wrappedItem);
+    next({ type: COLLECTION_LOADED_SCRAPE, items: wrappedItem });
   }
 }

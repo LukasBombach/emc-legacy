@@ -2,13 +2,12 @@ export default class Movies {
 
   static fileFilter = /\.(avi|mkv|mpeg|mpg|mov|mp4|m4v)$/i;
 
-  static filterAndEnrich(items) {
-    return items
-      .filter(item => Movies.fileFilter.test(item.fileName))
-      .map(item => ({
-        ...item,
-        name: Movies.titleFromFileName(item.fileName)
-      }));
+  static filter(item) {
+    return Movies.fileFilter.test(item.fileName);
+  }
+
+  static enrich(item) {
+    return { ...item, name: Movies.titleFromFileName(item.fileName) };
   }
 
   static async scrape(items) {

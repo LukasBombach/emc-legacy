@@ -30,15 +30,16 @@ export default class FileManager {
     return items.reduce((acc, cur) => ({ ...acc, ...cur }), {});
   }
 
+  // todo exclude / recurse folders
   static async loadSourceFromFs(source) {
     const fileNames = await readDir(source.path);
     const itemPromises = fileNames
       .filter(fileName => !collectionConfig.ignoreFiles.test(fileName))
-      // todo exclude / recurse folders
       .map(fileName => FileManager.getItemForFile(source.type, source.path, fileName));
     const items = await Promise.all(itemPromises);
-    const processedItems = FileManager.filters[source.type].filterAndEnrich(items);
-    return processedItems
+    return items
+      .filter(FileManager.filters[source.type].filter)
+      .map(FileManager.filters[source.type].enrich)
       .reduce((obj, item) => ({ ...obj, [item.fingerprint]: item }), {});
   }
 
