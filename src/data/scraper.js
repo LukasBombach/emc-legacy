@@ -1,7 +1,7 @@
 export default class Scraper {
 
   static async scrapeSingleItem(item) {
-    const url = `http://www.omdbapi.com/?t=${encodeURIComponent(item.name)}&y=&plot=short&r=json&apikey=4b86b9f1`;
+    const url = `http://www.omdbapi.com/?t=${encodeURIComponent(item.name)}&y=&apikey=4b86b9f1&plot=short&r=json`;
     const res = await fetch(url);
     const omdbJson = await res.json();
     const movie = Scraper.mapOmdbToMovie(omdbJson);
@@ -19,6 +19,5 @@ export default class Scraper {
     }
     return movie;
   }
-
 
 }
