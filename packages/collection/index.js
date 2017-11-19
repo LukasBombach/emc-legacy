@@ -1,6 +1,6 @@
 import {observable} from "mobx";
 
-class Collection {
+export default class Collection {
 
     @observable items = [];
 
