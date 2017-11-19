@@ -1,0 +1,7 @@
+{
+  "name": "@emc/collection",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Lukas Bombach",
+  "license": "MIT"
+}
