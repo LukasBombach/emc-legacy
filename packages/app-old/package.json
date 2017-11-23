@@ -1,5 +1,5 @@
 {
-  "name": "@emc/app",
+  "name": "@emc/app-old",
   "version": "0.1.0",
   "private": true,
   "main": "electron/main.js",
