@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-// import Collection from '@emc/collection';
+// import Collection from '@elmc/collection';
 
 const ItemList = observer(class ItemList extends Component {
 
