@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts-electron-new": "1.0.8"
+    "react": "16.1.1",
+    "react-dom": "16.1.1",
+    "react-scripts-electron-new": "1.0.8",
+    "@emc/app-collection-browser": "1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
