@@ -3,5 +3,8 @@
 		"lerna": "^2.5.1"
 	},
 	"author": "Lukas Bombach",
-	"license": "MIT"
+	"license": "MIT",
+	"scripts": {
+		"start": "cd packages/app && yarn start"
+	}
 }
