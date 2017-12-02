@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import { Collection } from '@elmc/collection';
 let ItemList = class ItemList extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +27,12 @@ ItemList = __decorate([
 class CollectionBrowser extends React.Component {
     constructor() {
         super(...arguments);
-        this.collection = { items: ['a', 'b'] };
+        this.collection = new Collection({ id: 'id', sources: [] });
+    }
+    componentDidMount() {
+        setInterval(() => {
+            this.collection.items.push({ id: 'some id' });
+        }, 2000);
     }
     render() {
         return React.createElement(ItemList, { collection: this.collection });

@@ -1,0 +1,18 @@
+0 silly input [ '@types/assign-deep' ]
+1 silly flags { _: [ 'add' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   scope: '@elmc/collection',
+1 silly flags   args: [ '@types/assign-deep' ] }
+2 verbose rootPath /Users/luke/Projekte/Mediacenter/code/emc
+3 info version 2.5.1
+4 info versioning independent
+5 silly isInitialized
+6 silly isInitialized true
+7 silly existsSync /Users/luke/Projekte/Mediacenter/code/emc/VERSION
+8 info scope @elmc/collection
+9 silly initialize attempt
+10 error initialize callback with error
+11 error Error: Package `@types/assign-deep` doesn't exist
+11 error     at got.then.catch.err (/Users/luke/.nvm/versions/node/v9.2.0/lib/node_modules/lerna/node_modules/package-json/index.js:62:11)
+11 error     at <anonymous>

@@ -1,15 +1,12 @@
 /// <reference types="react" />
 import * as React from 'react';
-export interface Collection {
-    items: Array<any>;
-}
+import { Collection } from '@elmc/collection';
 export interface ItemListProps {
     collection: Collection;
 }
 declare class CollectionBrowser extends React.Component {
-    collection: {
-        items: string[];
-    };
+    collection: Collection;
+    componentDidMount(): void;
     render(): JSX.Element;
 }
 export default CollectionBrowser;

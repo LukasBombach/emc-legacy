@@ -1,10 +1,17 @@
 {
   "name": "@elmc/collection",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Lukas Bombach",
   "license": "MIT",
   "dependencies": {
-    "mobx": "3.3.1"
+    "assign-deep": "^0.4.6",
+    "mobx": "3.3.1",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "start": "tsc --pretty --declaration --watch",
+    "build": "tsc --pretty --declaration"
   }
 }
