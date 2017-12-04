@@ -1,13 +1,13 @@
 {
   "name": "@elmc/collection",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/Collection.js",
+  "types": "dist/Collection.d.ts",
   "author": "Lukas Bombach",
   "license": "MIT",
   "dependencies": {
     "assign-deep": "^0.4.6",
-    "mobx": "3.3.1",
+    "mobx": "3.3.2",
     "typescript": "^2.6.2"
   },
   "scripts": {

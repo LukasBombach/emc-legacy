@@ -8,6 +8,7 @@
     "target": "es6",
     "jsx": "react",
     "strictNullChecks": true,
+    "experimentalDecorators": true,
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src/**/*", "tests/**/*"],

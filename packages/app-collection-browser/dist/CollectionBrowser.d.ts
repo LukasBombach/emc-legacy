@@ -6,7 +6,6 @@ export interface ItemListProps {
 }
 declare class CollectionBrowser extends React.Component {
     collection: Collection;
-    componentDidMount(): void;
     render(): JSX.Element;
 }
 export default CollectionBrowser;
