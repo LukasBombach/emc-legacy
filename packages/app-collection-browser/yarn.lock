@@ -67,6 +67,10 @@ mobx-react@4.3.5:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
+mobx@3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-3.3.2.tgz#e912a9f7c82b2df69f1abe6515ecaa551828a024"
+
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"

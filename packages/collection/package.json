@@ -7,11 +7,13 @@
   "license": "MIT",
   "dependencies": {
     "assign-deep": "^0.4.6",
-    "mobx": "3.3.2",
     "typescript": "^2.6.2"
   },
   "scripts": {
     "start": "tsc --pretty --declaration --watch",
     "build": "tsc --pretty --declaration"
+  },
+  "peerDependencies": {
+    "mobx": "3.3.2"
   }
 }
